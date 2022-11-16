@@ -1,0 +1,461 @@
+openapi: 3.0.0
+info:
+  title: cat
+  description: 猫ドメインに関する API 定義
+  version: 1.0.0
+servers:
+  - url: https://cat.example.com
+paths:
+  /cat/images:
+    get:
+      description: 猫の画像の一覧を取得する
+      summary: GET /cat/images
+      tags:
+        - cat
+      operationId: getImages
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                title: getImagesResponse
+                description: 猫の画像の一覧レスポンス
+                type: array
+                items:
+                  title: Image
+                  description: 猫の画像
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                      description: 画像 ID
+                    image_url:
+                      description: 画像 URL
+                      type: string
+                    title:
+                      description: 画像タイトル
+                      type: string
+                    breed:
+                      description: 猫の種類
+                      type: string
+                  required:
+                    - id
+                    - image_url
+                    - title
+              example:
+                items:
+                  - id: 1
+                    image_url: >-
+                      https://upload.wikimedia.org/wikipedia/commons/thumb/3/31/Doll_face_silver_Persian_2.jpg/1024px-Doll_face_silver_Persian_2.jpg
+                    title: 猫かわいい
+                    breed: ペルシャ猫
+                  - id: 2
+                    image_url: >-
+                      https://upload.wikimedia.org/wikipedia/commons/2/2a/Jewelkatz_Romeo_Of_Stalker-Bars.jpg
+                    title: ぬこ様
+                    breed: アメリカンショートヘア
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                title: ErrorResponse
+                type: object
+                description: エラーレスポンスの基底型（RFC7807準拠）
+                properties:
+                  type:
+                    type: string
+                    description: エラーの識別子（RFC7807準拠）
+                  title:
+                    type: string
+                    description: 人間が読める形式のエラーの概要（RFC7807準拠）
+                  detail:
+                    type: string
+                    description: 人間が読める形式のエラーの詳細（RFC7807準拠）
+                  status:
+                    type: integer
+                    description: オリジナルAPIサーバが返したHTTPステータスコード（RFC7807準拠）
+                required:
+                  - type
+              example:
+                value:
+                  type: internal_server_error
+                  title: Internal Server Error
+                  status: 500
+    post:
+      description: |-
+        猫の画像を1つ登録する
+        ※ 画像解析した結果猫の画像じゃなかった場合は登録できない
+      summary: POST /cat/images
+      tags:
+        - cat
+      operationId: postImages
+      requestBody:
+        content:
+          application/json:
+            schema:
+              title: ImagesRequest
+              description: 猫の画像リクエスト
+              type: object
+              properties:
+                image_url:
+                  description: 画像 URL
+                  type: string
+                title:
+                  description: 画像タイトル
+                  type: string
+                breed:
+                  description: 猫の種類
+                  type: string
+              required:
+                - image_url
+                - title
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                title: postImagesResponse
+                description: 猫の画像を一つ作成するレスポンス
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    description: 画像 ID
+              example:
+                id: 1
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                title: ErrorResponse
+                type: object
+                description: エラーレスポンスの基底型（RFC7807準拠）
+                properties:
+                  type:
+                    type: string
+                    description: エラーの識別子（RFC7807準拠）
+                  title:
+                    type: string
+                    description: 人間が読める形式のエラーの概要（RFC7807準拠）
+                  detail:
+                    type: string
+                    description: 人間が読める形式のエラーの詳細（RFC7807準拠）
+                  status:
+                    type: integer
+                    description: オリジナルAPIサーバが返したHTTPステータスコード（RFC7807準拠）
+                required:
+                  - type
+              examples:
+                badRequest:
+                  value:
+                    type: bad_request
+                    title: リクエストが正しくありません
+                    detail: title は必須項目です
+                    status: 400
+                notCat:
+                  value:
+                    type: not_cat
+                    title: 猫の画像ではありません
+                    status: 400
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                title: ErrorResponse
+                type: object
+                description: エラーレスポンスの基底型（RFC7807準拠）
+                properties:
+                  type:
+                    type: string
+                    description: エラーの識別子（RFC7807準拠）
+                  title:
+                    type: string
+                    description: 人間が読める形式のエラーの概要（RFC7807準拠）
+                  detail:
+                    type: string
+                    description: 人間が読める形式のエラーの詳細（RFC7807準拠）
+                  status:
+                    type: integer
+                    description: オリジナルAPIサーバが返したHTTPステータスコード（RFC7807準拠）
+                required:
+                  - type
+              example:
+                value:
+                  type: internal_server_error
+                  title: Internal Server Error
+                  status: 500
+  /cat/images/{imagesId}:
+    get:
+      description: 特定の猫の画像を取得する
+      summary: GET /cat/images/:id
+      tags:
+        - cat
+      operationId: getImagesId
+      parameters:
+        - in: path
+          name: imagesId
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                title: Image
+                description: 猫の画像
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    description: 画像 ID
+                  image_url:
+                    description: 画像 URL
+                    type: string
+                  title:
+                    description: 画像タイトル
+                    type: string
+                  breed:
+                    description: 猫の種類
+                    type: string
+                required:
+                  - id
+                  - image_url
+                  - title
+              example:
+                id: 1
+                image_url: >-
+                  https://upload.wikimedia.org/wikipedia/commons/thumb/3/31/Doll_face_silver_Persian_2.jpg/1024px-Doll_face_silver_Persian_2.jpg
+                title: 猫かわいい
+                breed: ペルシャ猫
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                title: ErrorResponse
+                type: object
+                description: エラーレスポンスの基底型（RFC7807準拠）
+                properties:
+                  type:
+                    type: string
+                    description: エラーの識別子（RFC7807準拠）
+                  title:
+                    type: string
+                    description: 人間が読める形式のエラーの概要（RFC7807準拠）
+                  detail:
+                    type: string
+                    description: 人間が読める形式のエラーの詳細（RFC7807準拠）
+                  status:
+                    type: integer
+                    description: オリジナルAPIサーバが返したHTTPステータスコード（RFC7807準拠）
+                required:
+                  - type
+              example:
+                value:
+                  type: not_found
+                  title: Not Found
+                  status: 401
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                title: ErrorResponse
+                type: object
+                description: エラーレスポンスの基底型（RFC7807準拠）
+                properties:
+                  type:
+                    type: string
+                    description: エラーの識別子（RFC7807準拠）
+                  title:
+                    type: string
+                    description: 人間が読める形式のエラーの概要（RFC7807準拠）
+                  detail:
+                    type: string
+                    description: 人間が読める形式のエラーの詳細（RFC7807準拠）
+                  status:
+                    type: integer
+                    description: オリジナルAPIサーバが返したHTTPステータスコード（RFC7807準拠）
+                required:
+                  - type
+              example:
+                value:
+                  type: internal_server_error
+                  title: Internal Server Error
+                  status: 500
+    patch:
+      description: 特定の猫の画像を更新する
+      summary: PATCH /cat/images/:id
+      tags:
+        - cat
+      operationId: patchImagesId
+      parameters:
+        - in: path
+          name: imagesId
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              title: ImagesRequest
+              description: 猫の画像リクエスト
+              type: object
+              properties:
+                image_url:
+                  description: 画像 URL
+                  type: string
+                title:
+                  description: 画像タイトル
+                  type: string
+                breed:
+                  description: 猫の種類
+                  type: string
+              required:
+                - image_url
+                - title
+      responses:
+        '200':
+          description: OK
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                title: ErrorResponse
+                type: object
+                description: エラーレスポンスの基底型（RFC7807準拠）
+                properties:
+                  type:
+                    type: string
+                    description: エラーの識別子（RFC7807準拠）
+                  title:
+                    type: string
+                    description: 人間が読める形式のエラーの概要（RFC7807準拠）
+                  detail:
+                    type: string
+                    description: 人間が読める形式のエラーの詳細（RFC7807準拠）
+                  status:
+                    type: integer
+                    description: オリジナルAPIサーバが返したHTTPステータスコード（RFC7807準拠）
+                required:
+                  - type
+              examples:
+                badRequest:
+                  value:
+                    type: bad_request
+                    title: リクエストが正しくありません
+                    detail: title は必須項目です
+                    status: 400
+                notCat:
+                  value:
+                    type: not_cat
+                    title: 猫の画像ではありません
+                    status: 400
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                title: ErrorResponse
+                type: object
+                description: エラーレスポンスの基底型（RFC7807準拠）
+                properties:
+                  type:
+                    type: string
+                    description: エラーの識別子（RFC7807準拠）
+                  title:
+                    type: string
+                    description: 人間が読める形式のエラーの概要（RFC7807準拠）
+                  detail:
+                    type: string
+                    description: 人間が読める形式のエラーの詳細（RFC7807準拠）
+                  status:
+                    type: integer
+                    description: オリジナルAPIサーバが返したHTTPステータスコード（RFC7807準拠）
+                required:
+                  - type
+              example:
+                value:
+                  type: internal_server_error
+                  title: Internal Server Error
+                  status: 500
+    delete:
+      description: 特定の猫の画像を削除する
+      summary: DELETE /cat/images/:id
+      tags:
+        - cat
+      operationId: deleteImagesId
+      parameters:
+        - in: path
+          name: imagesId
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: OK
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                title: ErrorResponse
+                type: object
+                description: エラーレスポンスの基底型（RFC7807準拠）
+                properties:
+                  type:
+                    type: string
+                    description: エラーの識別子（RFC7807準拠）
+                  title:
+                    type: string
+                    description: 人間が読める形式のエラーの概要（RFC7807準拠）
+                  detail:
+                    type: string
+                    description: 人間が読める形式のエラーの詳細（RFC7807準拠）
+                  status:
+                    type: integer
+                    description: オリジナルAPIサーバが返したHTTPステータスコード（RFC7807準拠）
+                required:
+                  - type
+              example:
+                value:
+                  type: not_found
+                  title: Not Found
+                  status: 401
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                title: ErrorResponse
+                type: object
+                description: エラーレスポンスの基底型（RFC7807準拠）
+                properties:
+                  type:
+                    type: string
+                    description: エラーの識別子（RFC7807準拠）
+                  title:
+                    type: string
+                    description: 人間が読める形式のエラーの概要（RFC7807準拠）
+                  detail:
+                    type: string
+                    description: 人間が読める形式のエラーの詳細（RFC7807準拠）
+                  status:
+                    type: integer
+                    description: オリジナルAPIサーバが返したHTTPステータスコード（RFC7807準拠）
+                required:
+                  - type
+              example:
+                value:
+                  type: internal_server_error
+                  title: Internal Server Error
+                  status: 500

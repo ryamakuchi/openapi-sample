@@ -1,0 +1,7 @@
+title: postImagesResponse
+description: 猫の画像を一つ作成するレスポンス
+type: object
+properties:
+  id:
+    type: integer
+    description: 画像 ID

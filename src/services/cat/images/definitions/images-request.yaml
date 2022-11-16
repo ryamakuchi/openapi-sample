@@ -1,0 +1,16 @@
+title: ImagesRequest
+description: 猫の画像リクエスト
+type: object
+properties:
+  image_url:
+    description: 画像 URL
+    type: string
+  title:
+    description: 画像タイトル
+    type: string
+  breed:
+    description: 猫の種類
+    type: string
+required:
+  - image_url
+  - title

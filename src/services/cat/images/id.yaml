@@ -1,0 +1,107 @@
+get:
+  description: 特定の猫の画像を取得する
+  summary: GET /cat/images/:id
+  tags:
+    - cat
+  operationId: getImagesId
+  parameters:
+    - in: path
+      name: imagesId
+      required: true
+      schema:
+        type: integer
+  responses:
+    '200':
+      description: OK
+      content:
+        application/json:
+          schema:
+            $ref: ./components/get-image-response.yaml
+          example:
+            $ref: ./examples/get-image-response.yaml
+    '404':
+      description: Not Found
+      content:
+        application/json:
+          schema:
+            $ref: ../../../components/error-response.yaml
+          example:
+            $ref: ../../../examples/404-not-found.yaml
+    '500':
+      description: Internal Server Error
+      content:
+        application/json:
+          schema:
+            $ref: ../../../components/error-response.yaml
+          example:
+            $ref: ../../../examples/500-internal-server-error.yaml
+patch:
+  description: 特定の猫の画像を更新する
+  summary: PATCH /cat/images/:id
+  tags:
+    - cat
+  operationId: patchImagesId
+  parameters:
+    - in: path
+      name: imagesId
+      required: true
+      schema:
+        type: integer
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ./components/patch-images-request.yaml
+  responses:
+    '200':
+      description: OK
+    '400':
+      description: Bad Request
+      content:
+        application/json:
+          schema:
+            $ref: ../../../components/error-response.yaml
+          examples:
+            badRequest:
+              $ref: ./examples/post-images-400.yaml
+            notCat:
+              $ref: ./examples/post-images-400-not-cat.yaml
+    '500':
+      description: Internal Server Error
+      content:
+        application/json:
+          schema:
+            $ref: ../../../components/error-response.yaml
+          example:
+            $ref: ../../../examples/500-internal-server-error.yaml
+delete:
+  description: 特定の猫の画像を削除する
+  summary: DELETE /cat/images/:id
+  tags:
+    - cat
+  operationId: deleteImagesId
+  parameters:
+    - in: path
+      name: imagesId
+      required: true
+      schema:
+        type: integer
+  responses:
+    '200':
+      description: OK
+    '404':
+      description: Not Found
+      content:
+        application/json:
+          schema:
+            $ref: ../../../components/error-response.yaml
+          example:
+            $ref: ../../../examples/404-not-found.yaml
+    '500':
+      description: Internal Server Error
+      content:
+        application/json:
+          schema:
+            $ref: ../../../components/error-response.yaml
+          example:
+            $ref: ../../../examples/500-internal-server-error.yaml

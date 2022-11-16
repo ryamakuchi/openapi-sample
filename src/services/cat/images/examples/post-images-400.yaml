@@ -1,0 +1,5 @@
+value:
+  type: bad_request
+  title: リクエストが正しくありません
+  detail: title は必須項目です
+  status: 400

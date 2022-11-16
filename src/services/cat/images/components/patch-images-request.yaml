@@ -1,0 +1,3 @@
+title: postImagesRequest
+description: 猫の画像を一つ更新するリクエスト
+$ref: ../definitions/images-request.yaml

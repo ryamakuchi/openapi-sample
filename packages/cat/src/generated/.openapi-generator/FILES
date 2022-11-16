@@ -1,0 +1,10 @@
+.openapi-generator-ignore
+apis/CatApi.ts
+apis/index.ts
+index.ts
+models/ErrorResponse.ts
+models/Image.ts
+models/ImagesRequest.ts
+models/PostImagesResponse.ts
+models/index.ts
+runtime.ts

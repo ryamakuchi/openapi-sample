@@ -1,0 +1,4 @@
+value:
+  type: bad_request
+  title: Bad Request
+  status: 400

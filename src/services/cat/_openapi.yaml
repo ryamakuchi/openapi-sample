@@ -1,0 +1,12 @@
+openapi: 3.0.0
+info:
+  title: cat
+  description: 猫ドメインに関する API 定義
+  version: 1.0.0
+servers:
+  - url: https://cat.example.com
+paths:
+  /cat/images:
+    $ref: ./images/index.yaml
+  /cat/images/{imagesId}:
+    $ref: ./images/id.yaml

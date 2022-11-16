@@ -1,0 +1,6 @@
+value:
+  type: unauthorized
+  title: Unauthorized
+  status: 401
+  payload:
+    login_url: https://example.com/login
