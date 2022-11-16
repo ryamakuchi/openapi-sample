@@ -5,7 +5,10 @@
   "publishConfig": {
     "registry": "https://npm.pkg.github.com/"
   },
-  "scripts": {},
+  "scripts": {
+    "build": "yarn run build",
+    "watch": "ts-node --files ./scripts/watch.ts"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ryamakuchi/openapi-sample.git"
