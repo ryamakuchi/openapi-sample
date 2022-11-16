@@ -1,0 +1,34 @@
+openapi: 3.0.0
+info:
+  title: api-client
+  description: 汎用的な API 定義
+  version: 1.0.0
+servers:
+  - url: https://example.com
+paths:
+  /example:
+    get:
+      responses:
+        '200':
+          description: OK.
+components:
+  schemas:
+    ErrorResponse:
+      title: ErrorResponse
+      type: object
+      description: エラーレスポンスの基底型（RFC7807準拠）
+      properties:
+        type:
+          type: string
+          description: エラーの識別子（RFC7807準拠）
+        title:
+          type: string
+          description: 人間が読める形式のエラーの概要（RFC7807準拠）
+        detail:
+          type: string
+          description: 人間が読める形式のエラーの詳細（RFC7807準拠）
+        status:
+          type: integer
+          description: オリジナルAPIサーバが返したHTTPステータスコード（RFC7807準拠）
+      required:
+        - type
