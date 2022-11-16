@@ -15,3 +15,5 @@ components:
   schemas:
     ErrorResponse:
       $ref: ./components/error-response.yaml
+    UnauthorizedErrorResponse:
+      $ref: ./components/401-unauthorized-error-response.yaml

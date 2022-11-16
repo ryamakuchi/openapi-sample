@@ -1,0 +1,18 @@
+title: UnauthorizedErrorResponse
+type: object
+description: エラーレスポンスを拡張した401用のエラーレスポンス
+allOf:
+  - $ref: '#/components/schemas/ErrorResponse'
+  - type: object
+    properties:
+      payload:
+        type: object
+        description: 拡張した場合のペイロード
+        properties:
+          login_url:
+            type: string
+            description: ログイン用の URL
+        required:
+          - login_url
+    required:
+      - payload

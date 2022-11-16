@@ -3,5 +3,8 @@ apis/DefaultApi.ts
 apis/index.ts
 index.ts
 models/ErrorResponse.ts
+models/UnauthorizedErrorResponse.ts
+models/UnauthorizedErrorResponseAllOf.ts
+models/UnauthorizedErrorResponseAllOfPayload.ts
 models/index.ts
 runtime.ts
