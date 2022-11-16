@@ -4,6 +4,12 @@ get:
   tags:
     - cat
   operationId: getImagesId
+  parameters:
+    - in: path
+      name: imagesId
+      required: true
+      schema:
+        type: integer
   responses:
     '200':
       description: OK
@@ -35,6 +41,12 @@ patch:
   tags:
     - cat
   operationId: patchImagesId
+  parameters:
+    - in: path
+      name: imagesId
+      required: true
+      schema:
+        type: integer
   requestBody:
     content:
       application/json:
@@ -68,6 +80,12 @@ delete:
   tags:
     - cat
   operationId: deleteImagesId
+  parameters:
+    - in: path
+      name: imagesId
+      required: true
+      schema:
+        type: integer
   responses:
     '200':
       description: OK

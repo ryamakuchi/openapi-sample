@@ -8,5 +8,5 @@ servers:
 paths:
   /cat/images:
     $ref: ./images/index.yaml
-  /cat/images/{id}:
+  /cat/images/{imagesId}:
     $ref: ./images/id.yaml

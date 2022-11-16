@@ -7,7 +7,7 @@
   },
   "scripts": {
     "watch": "ts-node --files ./scripts/watch.ts",
-    "clean": "rm -rf packages/api-client/src/generated",
+    "clean": "rm -rf packages/api-client/src/generated && rm -rf packages/cat/src/generated",
     "generate": "yarn clean && openapi-generator-cli generate"
   },
   "repository": {

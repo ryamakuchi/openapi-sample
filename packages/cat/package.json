@@ -1,12 +1,12 @@
 {
-  "name": "api-client",
+  "name": "cat",
   "version": "1.0.0",
   "author": "rry(ryamakuchi)",
   "license": "MIT",
   "types": "dist/index.d.ts",
   "main": "dist/index.js",
   "scripts": {
-    "build": "tsc -p . && cp ../../src/merged/api-client.yaml ./openapi.yaml",
+    "build": "tsc -p . && cp ../../src/merged/cat.yaml ./openapi.yaml",
     "test": "jest"
   },
   "files": [
