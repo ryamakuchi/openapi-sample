@@ -1,0 +1,22 @@
+{
+  "name": "openapi-sample",
+  "version": "1.0.0",
+  "description": "OpenAPI Generator Sample Package",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
+  },
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ryamakuchi/openapi-sample.git"
+  },
+  "author": "rry(ryamakuchi)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ryamakuchi/openapi-sample/issues"
+  },
+  "homepage": "https://github.com/ryamakuchi/openapi-sample#readme"
+}
