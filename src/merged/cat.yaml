@@ -44,7 +44,7 @@ paths:
                     - image_url
                     - title
               example:
-                value:
+                items:
                   - id: 1
                     image_url: >-
                       https://upload.wikimedia.org/wikipedia/commons/thumb/3/31/Doll_face_silver_Persian_2.jpg/1024px-Doll_face_silver_Persian_2.jpg
@@ -125,8 +125,7 @@ paths:
                     type: integer
                     description: 画像 ID
               example:
-                value:
-                  - id: 1
+                id: 1
         '400':
           description: Bad Request
           content:
@@ -190,13 +189,19 @@ paths:
                   type: internal_server_error
                   title: Internal Server Error
                   status: 500
-  /cat/images/{id}:
+  /cat/images/{imagesId}:
     get:
       description: 特定の猫の画像を取得する
       summary: GET /cat/images/:id
       tags:
         - cat
       operationId: getImagesId
+      parameters:
+        - in: path
+          name: imagesId
+          required: true
+          schema:
+            type: integer
       responses:
         '200':
           description: OK
@@ -291,6 +296,12 @@ paths:
       tags:
         - cat
       operationId: patchImagesId
+      parameters:
+        - in: path
+          name: imagesId
+          required: true
+          schema:
+            type: integer
       requestBody:
         content:
           application/json:
@@ -383,6 +394,12 @@ paths:
       tags:
         - cat
       operationId: deleteImagesId
+      parameters:
+        - in: path
+          name: imagesId
+          required: true
+          schema:
+            type: integer
       responses:
         '200':
           description: OK

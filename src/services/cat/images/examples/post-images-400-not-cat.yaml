@@ -1,3 +1,4 @@
-type: not_cat
-title: 猫の画像ではありません
-status: 400
+value:
+  type: not_cat
+  title: 猫の画像ではありません
+  status: 400
