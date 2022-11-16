@@ -6,8 +6,8 @@
     "registry": "https://npm.pkg.github.com/"
   },
   "scripts": {
-    "build": "yarn run build",
-    "watch": "ts-node --files ./scripts/watch.ts"
+    "watch": "ts-node --files ./scripts/watch.ts",
+    "generate": "openapi-generator-cli generate"
   },
   "repository": {
     "type": "git",
