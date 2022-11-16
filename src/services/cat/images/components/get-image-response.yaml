@@ -1,3 +1,3 @@
 title: getImageResponse
 description: 特定の猫の画像のレスポンス
-$ref: ../models/image.yaml
+$ref: ../definitions/image.yaml

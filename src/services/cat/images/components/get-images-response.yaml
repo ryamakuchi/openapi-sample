@@ -2,4 +2,4 @@ title: getImagesResponse
 description: 猫の画像の一覧レスポンス
 type: array
 items:
-  $ref: ../models/image.yaml
+  $ref: ../definitions/image.yaml
