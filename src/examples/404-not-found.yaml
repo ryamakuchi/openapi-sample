@@ -1,0 +1,4 @@
+value:
+  type: not_found
+  title: Not Found
+  status: 401

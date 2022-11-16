@@ -1,0 +1,20 @@
+title: Image
+description: 猫の画像
+type: object
+properties:
+  id:
+    type: integer
+    description: 画像 ID
+  image_url:
+    description: 画像 URL
+    type: string
+  title:
+    description: 画像タイトル
+    type: string
+  breed:
+    description: 猫の種類
+    type: string
+required:
+  - id
+  - image_url
+  - title

@@ -1,0 +1,64 @@
+get:
+  description: 猫の画像の一覧を取得する
+  summary: GET /cat/images
+  tags:
+    - cat
+  operationId: getImages
+  responses:
+    '200':
+      description: OK
+      content:
+        application/json:
+          schema:
+            $ref: ./components/get-images-response.yaml
+          example:
+            $ref: ./examples/get-images-response.yaml
+    '500':
+      description: Internal Server Error
+      content:
+        application/json:
+          schema:
+            $ref: ../../../components/error-response.yaml
+          example:
+            $ref: ../../../examples/500-internal-server-error.yaml
+post:
+  description: |-
+    猫の画像を1つ登録する
+    ※ 画像解析した結果猫の画像じゃなかった場合は登録できない
+  summary: POST /cat/images
+  tags:
+    - cat
+  operationId: postImages
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ./components/post-images-request.yaml
+  responses:
+    '201':
+      description: Created
+      content:
+        application/json:
+          schema:
+            $ref: ./components/post-images-response.yaml
+          example:
+            $ref: ./examples/post-images-response.yaml
+    '400':
+      description: Bad Request
+      content:
+        application/json:
+          schema:
+            $ref: ../../../components/error-response.yaml
+          examples:
+            badRequest:
+              $ref: ./examples/post-images-400.yaml
+            notCat:
+              $ref: ./examples/post-images-400-not-cat.yaml
+    '500':
+      description: Internal Server Error
+      content:
+        application/json:
+          schema:
+            $ref: ../../../components/error-response.yaml
+          example:
+            $ref: ../../../examples/500-internal-server-error.yaml

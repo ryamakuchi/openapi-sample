@@ -1,0 +1,4 @@
+value:
+  type: unauthorized
+  title: Unauthorized
+  status: 401
