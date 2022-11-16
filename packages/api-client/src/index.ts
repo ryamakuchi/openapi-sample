@@ -1,2 +1,3 @@
 export * from './generated';
-export * from './api-client';
+export * from './config';
+export * from './function';
