@@ -36,7 +36,11 @@ export const apiErrorType = async (
 
   if (isAPI401Error(responseBody)) {
     if (options401.exec) options401.exec();
-    if (options401.catch) return responseBody;
+    if (options401.catch) {
+      return responseBody;
+    } else {
+      return;
+    }
   }
 
   return responseBody;
